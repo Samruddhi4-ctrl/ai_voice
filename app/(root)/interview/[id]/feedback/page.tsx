@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-const page = async({ params }: RouteParams) => {
+const Page = async({ params }: RouteParams) => {
   const { id } = params;
   const user = await getCurrentUser();
 
