@@ -20,7 +20,7 @@ interface SavedMessage {
   content: string;
 }
 
-function Agent({ userName, userId, type, interviewId, questions }: AgentProps) {
+const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =>{
   const router = useRouter();
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
@@ -63,25 +63,26 @@ function Agent({ userName, userId, type, interviewId, questions }: AgentProps) {
   const handleGenerateFeedback = async (messages: SavedMessage[]) => {
     console.log("Generate feedback here.");
 
+    // TODO: Create a server action that generates feedback
     const { success, feedbackId: id } = await createFeedback({
       interviewId: interviewId!,
       userId: userId!,
-      transcript: messages,
-    });
+      transcript: messages
+    })
 
-    // TODO: Create a server action that geenerates feedback
+    // TODO: Create a server action that generates feedback
     if (success && id) {
       router.push(`/interview/${interviewId}/feedback`);
     } else {
-      console.log("Error saving feedback.");
-      router.push("/");
+      console.log('Error saving feedback');
+      router.push('/');
     }
   };
 
   useEffect(() => {
     if (callStatus === CallStatus.FINISHED) {
       if (type === "generate") {
-        router.push("/");
+        router.push('/');
       } else {
         handleGenerateFeedback(messages);
       }
@@ -96,7 +97,7 @@ function Agent({ userName, userId, type, interviewId, questions }: AgentProps) {
         variableValues: { username: userName, userid: userId },
       });
     } else {
-      let formattedQuestions = "";
+      let formattedQuestions = '';
 
       if (questions) {
         formattedQuestions = questions

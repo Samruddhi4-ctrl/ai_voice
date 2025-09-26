@@ -35,8 +35,10 @@ async function Page({ params }: RouteParams) {
           {interview.type}
         </p>
       </div>
+
+      
       <Agent
-        userName={user?.name || ""}
+        userName={user?.name || ''}
         userId={user?.id}
         interviewId={id}
         type="interview"

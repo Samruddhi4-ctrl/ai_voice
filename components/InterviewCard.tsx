@@ -6,14 +6,14 @@ import Link from "next/link";
 import DisplayTechIcons from "./DisplayTechIcons";
 import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
-async function InterviewCard({
+const InterviewCard = async ({
   id,
   userId,
   role,
   type,
   techstack,
   createdAt,
-}: InterviewCardProps) {
+}: InterviewCardProps) => {
   const feedback =
     userId && id
       ? await getFeedbackByInterviewId({ interviewId: id, userId })

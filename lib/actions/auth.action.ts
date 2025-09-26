@@ -14,7 +14,7 @@ export async function signUp(params: SignUpParams) {
     if (userRecord.exists) {
       return {
         success: false,
-        message: "User already exists. Please sign in.",
+        message: "User already exists. Please sign in."
       };
     }
 
@@ -33,13 +33,13 @@ export async function signUp(params: SignUpParams) {
     if (error.code === "auth/email-already-exists") {
       return {
         success: false,
-        message: "This email is already in use.",
+        message: "This email is already in use."
       };
     }
 
     return {
       success: false,
-      message: "Failed to create an account",
+      message: "Failed to create an account"
     };
   }
 }

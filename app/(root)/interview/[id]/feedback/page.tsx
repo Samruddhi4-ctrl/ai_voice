@@ -9,18 +9,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-async function Page({ params }: RouteParams) {
+const page = asynce({ params }: RouteParams) => {
   const { id } = await params;
   const user = await getCurrentUser();
 
   const interview = await getInterviewsById(id);
-  if (!interview) redirect("/");
+  if (!interview) redirect('/');
 
   const feedback = await getFeedbackByInterviewId({
     interviewId: id,
     userId: user?.id!,
   });
 
+  console.log(feedback);
+ 
   return (
     <section className="section-feedback">
       <div className="flex flex-row justify-center">

@@ -51,19 +51,13 @@ export async function createFeedback(params: CreateFeedbackParams) {
   try {
     const formattedTranscript = transcript
       .map(
-        (sentence: { role: string; content: string }) =>
+        (sentence: { role: string; content: string }) => (
           `- ${sentence.role}: ${sentence.content}\n`
-      )
-      .join("");
+      ))
+      .join('');
 
     const {
-      object: {
-        totalScore,
-        categoryScores,
-        strengths,
-        areasForImprovement,
-        finalAssessment,
-      },
+      object: { totalScore, categoryScores, strengths, areasForImprovement, finalAssessment, },
     } = await generateObject({
       model: google("gemini-2.0-flash-001", {
         structuredOutputs: false,
@@ -85,7 +79,7 @@ export async function createFeedback(params: CreateFeedbackParams) {
         "You are a professional interviewer analyzing a mock interview. Your task is to evaluate the candidate based on structured categories",
     });
 
-    const feedback = await db.collection("feedback").add({
+    const feedback = await db.collection('feedback').add({
       interviewId,
       userId,
       totalScore,
@@ -96,7 +90,9 @@ export async function createFeedback(params: CreateFeedbackParams) {
       createdAt: new Date().toISOString(),
     });
 
-    return { success: true, feedbackId: feedback.id };
+    return { 
+      success: true, 
+      feedbackId: feedback.id }
   } catch (error) {
     console.error("Error saving feedback", error);
 
