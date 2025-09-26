@@ -10,7 +10,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const Page = async({ params }: RouteParams) => {
-  const { id } = params;
+  const { id } = await params;
   const user = await getCurrentUser();
 
   const interview = await getInterviewsById(id);

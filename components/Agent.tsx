@@ -109,6 +109,9 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
         variableValues: {
           questions: formattedQuestions,
         },
+        assistant_overrides: {
+          recordingEnabled: true,
+        }
       });
     }
   };
