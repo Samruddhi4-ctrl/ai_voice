@@ -1,3 +1,4 @@
+import Agent from '@/components/Agent'
 import React from 'react'
 
 const page = () => {
@@ -5,7 +6,7 @@ const page = () => {
     <>
     <h3>Interview Generation </h3>
 
-    <Agent userName="You" userId="user1" type="generate" />
+    <Agent  userName="You" userId="user1" type="generate" />
     </>
   )
 }
